@@ -1,3 +1,3 @@
 # NyiBBang dotfiles
 
-Based on holman/dotfilse
+Based on holman/dotfiles
