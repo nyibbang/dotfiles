@@ -23,7 +23,8 @@
     glogd = log --oneline --graph --decorate --all --date-order
     glog = log --oneline --graph --decorate --all -10
     staged = diff --cached
-    st = status -s
+    st = status
+    sts = status -s
 [mergetool]
     keepBackup = false
 [difftool]
