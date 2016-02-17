@@ -17,6 +17,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'embear/vim-localvimrc'
+Plugin 'mileszs/ack.vim'
 
 call vundle#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -46,6 +47,7 @@ let mapleader=","
 let g:ycm_confirm_extra_conf = 0
 
 " airline
+set laststatus=2
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 
