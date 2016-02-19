@@ -1,6 +1,6 @@
 .lvimrc
 tags
 .ycm_extra_conf.py*
-.*.swp
-.*.swo
+*.swp
+*.swo
 .qmake.conf

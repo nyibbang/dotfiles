@@ -25,6 +25,9 @@
     staged = diff --cached
     st = status
     sts = status -s
+    mark-unchanged = update-index --assume-unchanged
+    mark-changed = update-index --no-assume-unchanged
+    marked-unchanged = !git ls-files -v | grep "^[[:lower:]]"
 [mergetool]
     keepBackup = false
 [difftool]
