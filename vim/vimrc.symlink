@@ -19,6 +19,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'embear/vim-localvimrc'
 Plugin 'mileszs/ack.vim'
 Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'derekwyatt/vim-fswitch'
 
 call vundle#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -42,6 +43,7 @@ set completeopt=longest,menuone
 set list
 set listchars=trail:_,tab::.
 set backspace=indent,eol,start
+set ignorecase
 let mapleader=","
 
 " ycm
@@ -72,4 +74,13 @@ let g:cpp_class_scope_highlight = 1
 let g:cpp_experimental_template_highlight = 1
 
 " ignore repo files
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/tags
+
+" switch header/source
+au! BufEnter *.c let b:fswitchdst = 'h' | let b:fswitchlocs = '.'
+au! BufEnter *.c{pp,xx} let b:fswitchdst = 'h,hpp,hxx' | let b:fswitchlocs = '.'
+au! BufEnter *.h{,pp,xx} let b:fswitchdst = 'c,cpp,cxx' | let b:fswitchlocs = '.'
+nmap <silent> <F4> :FSHere<cr>
+
+" syntastic
+let g:syntastic_enable_signs = 1
