@@ -1,12 +1,13 @@
 # Path to your oh-my-zsh configuration.
-export ZSH=$HOME/.oh-my-zsh
+export ZSH=$HOME/.zsh/oh-my-zsh
 
 # shortcut to this dotfiles path is $DOTFILES
 export DOTFILES=$HOME/.dotfiles
 
 # all of our zsh files
 typeset -U config_files
-config_files=($DOTFILES/**/*.zsh)
+config_files_raw=$(find $DOTFILES -type f -name "*.zsh" ! -path "*oh-my-zsh*")
+config_files=(${(@f)${config_files_raw}})
 
 # load the path files
 for file in ${(M)config_files:#*/path.zsh}
