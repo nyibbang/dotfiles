@@ -21,7 +21,7 @@
     df = diff
     fix = commit --amend
     glogd = log --oneline --graph --decorate --all --date-order
-    glog = log --oneline --graph --decorate --all -10
+    glog = log --oneline --graph --decorate --all -20
     staged = diff --cached
     st = status
     sts = status -s

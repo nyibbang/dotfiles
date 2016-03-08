@@ -20,6 +20,7 @@ Plugin 'embear/vim-localvimrc'
 Plugin 'mileszs/ack.vim'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'derekwyatt/vim-fswitch'
+Plugin 'AndrewRadev/linediff.vim'
 
 call vundle#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -44,6 +45,7 @@ set list
 set listchars=trail:_,tab::.
 set backspace=indent,eol,start
 set ignorecase
+set mouse=a
 let mapleader=","
 
 " ycm
@@ -83,4 +85,8 @@ au! BufEnter *.h{,pp,xx} let b:fswitchdst = 'c,cpp,cxx' | let b:fswitchlocs = '.
 nmap <silent> <F4> :FSHere<cr>
 
 " syntastic
-let g:syntastic_enable_signs = 1
+let g:syntastic_enable_signs = 0
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
