@@ -20,8 +20,8 @@
     count = !git shortlog -sn
     df = diff
     fix = commit --amend
-    glogd = log --oneline --graph --decorate --all --date-order
-    glog = log --oneline --graph --decorate --all -20
+    glogd = log --oneline --graph --decorate --date-order
+    glog = log --oneline --graph --decorate
     staged = diff --cached
     st = status
     sts = status -s
@@ -42,3 +42,5 @@
     #
     # Setting to git 2.0 default to suppress warning message
     default = simple
+[rerere]
+    enabled = true
