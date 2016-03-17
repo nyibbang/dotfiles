@@ -44,7 +44,7 @@ set completeopt=longest,menuone
 set list
 set listchars=trail:_,tab::.
 set backspace=indent,eol,start
-set ignorecase
+set smartcase
 set mouse=a
 let mapleader=","
 
