@@ -12,17 +12,20 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/syntastic'
 Plugin 'godlygeek/tabular'
-Plugin 'jonathanfilip/vim-lucius'
 Plugin 'vim-airline/vim-airline'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'embear/vim-localvimrc'
 Plugin 'mileszs/ack.vim'
-Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'derekwyatt/vim-fswitch'
 Plugin 'AndrewRadev/linediff.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'ervandew/supertab'
+Plugin 'jeaye/color_coded'
+Plugin 'rdnetto/YCM-Generator'
+Plugin 'tomasr/molokai'
+Plugin 'NigoroJr/color_coded-colorschemes'
+Plugin 'rhysd/vim-clang-format'
 
 call vundle#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -31,7 +34,7 @@ call vundle#end()
 filetype plugin indent on
 syntax on
 set background=dark
-colorscheme lucius
+colorscheme molokaied " molokai for color_coded
 
 set number
 set showmatch
@@ -49,6 +52,9 @@ set backspace=indent,eol,start
 set ignorecase
 set smartcase
 set mouse=a
+set nomodeline
+set cursorline
+set virtualedit=all
 let mapleader=","
 
 " ycm
