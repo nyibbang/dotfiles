@@ -22,6 +22,7 @@
     fix = commit --amend
     glogd = log --oneline --graph --decorate --date-order
     glog = log --oneline --graph --decorate
+    glogref = log --graph --pretty=format:'%Cred%h%Creset %C(green)%d %Creset' --abbrev-commit
     staged = diff --cached
     st = status
     sts = status -s

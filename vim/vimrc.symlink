@@ -21,11 +21,10 @@ Plugin 'derekwyatt/vim-fswitch'
 Plugin 'AndrewRadev/linediff.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'ervandew/supertab'
-Plugin 'jeaye/color_coded'
-Plugin 'rdnetto/YCM-Generator'
+"Plugin 'rdnetto/YCM-Generator'
 Plugin 'tomasr/molokai'
-Plugin 'NigoroJr/color_coded-colorschemes'
 Plugin 'rhysd/vim-clang-format'
+Plugin 'neomake/neomake'
 
 call vundle#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -34,7 +33,7 @@ call vundle#end()
 filetype plugin indent on
 syntax on
 set background=dark
-colorscheme molokaied " molokai for color_coded
+colorscheme molokai
 
 set number
 set showmatch
@@ -104,8 +103,12 @@ let g:syntastic_check_on_wq = 0
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
+nnoremap <leader>jd :YcmCompleter GoTo<CR>
 
 " better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+" ctrp
+let g:ctrlp_switch_buffer = 0
