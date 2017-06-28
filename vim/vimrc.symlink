@@ -25,6 +25,8 @@ Plugin 'ervandew/supertab'
 Plugin 'tomasr/molokai'
 Plugin 'rhysd/vim-clang-format'
 Plugin 'neomake/neomake'
+Plugin 'mattn/emmet-vim'
+Plugin 'tpope/vim-ragtag'
 
 call vundle#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -70,7 +72,7 @@ noremap <F5> :NERDTree<cr>
 
 " local vimrc
 let g:localvimrc_sandbox=0
-let g:localvimrc_ask=1
+let g:localvimrc_ask=0
 
 " buffers as tabs
 set hidden
