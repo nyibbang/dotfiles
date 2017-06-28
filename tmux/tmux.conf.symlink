@@ -82,13 +82,18 @@ bind-key C command-prompt -p "Name of new window: " "new-window -n '%%'"
 bind r source-file ~/.tmux.conf \; display-message "Config reloaded..."
 
 # auto window rename
-set-window-option -g automatic-rename
+#set-window-option -g automatic-rename
+set-window-option -g allow-rename off
 
 # color
 set -g default-terminal "screen-256color"
 
 # status bar
 set-option -g status-utf8 on
+
+# mouse
+set-option -g mouse on
+set-option -g mouse-utf8 on
 
 # https://github.com/edkolev/dots/blob/master/tmux.conf
 # Updates for tmux 1.9's current pane splitting paths.
