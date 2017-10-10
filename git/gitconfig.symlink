@@ -30,6 +30,7 @@
     mark-unchanged = update-index --assume-unchanged
     mark-changed = update-index --no-assume-unchanged
     marked-unchanged = !git ls-files -v | grep "^[[:lower:]]"
+    serve = daemon --verbose --export-all --base-path=.git --reuseaddr --strict-paths .git/
 [merge]
     tool = kdiff3
 [mergetool]
