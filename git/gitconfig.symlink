@@ -19,6 +19,7 @@
     co = checkout
     count = !git shortlog -sn
     df = diff
+    cp = cherry-pick
     fix = commit --amend
     amend = commit --amend
     glogd = log --oneline --graph --decorate --date-order
