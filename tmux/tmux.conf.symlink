@@ -124,3 +124,5 @@ set -g @plugin 'tmux-plugins/tmux-yank'
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '$HOME/.tmux/plugins/tpm/tpm'
+
+set -g history-limit 4096

@@ -12,8 +12,6 @@ Plug 'mileszs/ack.vim'
 Plug 'tomasr/molokai'
 Plug 'rhysd/vim-clang-format'
 Plug 'neomake/neomake'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-clang'
 
 call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -69,8 +67,3 @@ set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/tags
 
 " ctrp
 let g:ctrlp_switch_buffer = 0
-
-" Use deoplete.
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#clang#libclang_path = "/usr/lib/llvm-3.8/lib/libclang.so"
-let g:deoplete#sources#clang#clang_header = "/usr/lib/llvm-3.8/include/clang"
