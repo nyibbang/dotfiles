@@ -33,8 +33,10 @@
     mark-changed = update-index --no-assume-unchanged
     marked-unchanged = !git ls-files -v | grep "^[[:lower:]]"
     serve = daemon --verbose --export-all --base-path=.git --reuseaddr --strict-paths .git/
+    rebcont = rebase --continue
+    rebabrt = rebase --abort
 [merge]
-    tool = kdiff3
+    tool = vimdiff
 [mergetool]
     keepBackup = false
 [difftool]
@@ -49,3 +51,5 @@
     default = simple
 [rerere]
     enabled = true
+[checkout]
+	defaultRemote = origin

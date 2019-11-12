@@ -9,16 +9,19 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'embear/vim-localvimrc'
 Plug 'mileszs/ack.vim'
-Plug 'tomasr/molokai'
 Plug 'rhysd/vim-clang-format'
 Plug 'neomake/neomake'
-
+Plug 'shumphrey/fugitive-gitlab.vim'
+Plug 'ycm-core/YouCompleteMe'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'NLKNguyen/papercolor-theme'
 call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Options
 set background=dark
-colorscheme molokai
+colorscheme PaperColor
 
 set number
 set showmatch
@@ -38,9 +41,12 @@ set smartcase
 set mouse=a
 set nomodeline
 set cursorline
-set virtualedit=all
+set virtualedit=block
 set nowrapscan
 let mapleader=","
+
+" rebuild tags
+map <leader>bta :!/usr/local/bin/ctags -R .<CR>
 
 " airline
 set laststatus=2
@@ -67,3 +73,28 @@ set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/tags
 
 " ctrp
 let g:ctrlp_switch_buffer = 0
+
+let g:ackprg='ag --nogroup --nocolor --column'
+
+" file is large from 10mb
+let g:LargeFile = 1024 * 1024 * 10
+augroup LargeFile
+ autocmd BufReadPre * let f=getfsize(expand("<afile>")) | if f > g:LargeFile || f == -2 | call LargeFile() | endif
+augroup END
+
+function! LargeFile()
+ " no syntax highlighting etc
+ set eventignore+=FileType
+ " save memory when other file is viewed
+ setlocal bufhidden=unload
+ " is read-only (write with :w new_filename)
+ setlocal buftype=nowrite
+ " no undo possible
+ setlocal undolevels=-1
+ " display message
+ autocmd VimEnter *  echo "The file is larger than " . (g:LargeFile / 1024 / 1024) . " MB, so some options are changed (see .vimrc for details)."
+endfunction
+
+let g:UltiSnipsExpandTrigger="<c-j>"
+
+nnoremap <leader>jd :YcmCompleter GoTo<CR>

@@ -1,36 +1,35 @@
 # https://github.com/seebi/tmux-colors-solarized/blob/master/tmuxcolors-256.conf
-set-option -g status-bg colour235 #base02
-set-option -g status-fg colour136 #yellow
-set-option -g status-attr default
+set -g status-bg colour235 #base02
+set -g status-fg colour136 #yellow
+set -g status-attr default
 
 # set window split
 bind-key v split-window -h
 bind-key b split-window
 
 # default window title colors
-set-window-option -g window-status-fg colour244 #base0
-set-window-option -g window-status-bg default
-#set-window-option -g window-status-attr dim
+setw -g window-status-fg colour244 #base0
+setw -g window-status-bg default
+setw -g window-status-attr dim
 
 # active window title colors
-set-window-option -g window-status-current-fg colour166 #orange
-set-window-option -g window-status-current-bg default
-#set-window-option -g window-status-current-attr bright
+setw -g window-status-current-fg colour166 #orange
+setw -g window-status-current-bg default
+setw -g window-status-current-attr bright
 
 # pane border
-set-option -g pane-border-fg colour235 #base02
-set-option -g pane-active-border-fg colour240 #base01
+set -g pane-border-fg colour235 #base02
+set -g pane-active-border-fg colour240 #base01
 
 # message text
-set-option -g message-bg colour235 #base02
-set-option -g message-fg colour166 #orange
+set -g message-bg colour235 #base02
+set -g message-fg colour166 #orange
 
 # pane number display
-set-option -g display-panes-active-colour colour33 #blue
-set-option -g display-panes-colour colour166 #orange
+set -g display-panes-active-colour colour33 #blue
+set -g display-panes-colour colour166 #orange
 # clock
-set-window-option -g clock-mode-colour green #green
-
+setw -g clock-mode-colour green #green
 
 set -g status-interval 1
 set -g status-justify centre # center align window list
@@ -40,7 +39,7 @@ set -g status-left '#[fg=green]#H #[fg=black]• #[fg=green,bright]#(uname -r | 
 set -g status-right '#[fg=green,bg=default,bright]#(tmux-mem-cpu-load) #[fg=red,dim,bg=default]#(uptime | cut -f 4-5 -d " " | cut -f 1 -d ",") #[fg=white,bg=default]%a%l:%M:%S %p#[default] #[fg=blue]%Y-%m-%d'
 
 # C-b is not acceptable -- Vim uses it
-set-option -g prefix C-a
+set -g prefix C-a
 bind-key C-a last-window
 
 # Start numbering at 1
@@ -63,7 +62,7 @@ setw -g monitor-activity on
 set -g visual-activity on
 
 # Vi copypaste mode
-set-window-option -g mode-keys vi
+setw -g mode-keys vi
 bind-key -t vi-copy 'v' begin-selection
 bind-key -t vi-copy 'y' copy-selection
 
@@ -82,18 +81,24 @@ bind-key C command-prompt -p "Name of new window: " "new-window -n '%%'"
 bind r source-file ~/.tmux.conf \; display-message "Config reloaded..."
 
 # auto window rename
-#set-window-option -g automatic-rename
-set-window-option -g allow-rename off
+setw -g automatic-rename
+setw -g allow-rename on
+
+# Scroll history
+set -g history-limit 4096
+
+# Renumber windows
+set -g renumber-windows on
 
 # color
 set -g default-terminal "screen-256color"
 
 # status bar
-set-option -g status-utf8 on
+set -g status-utf8 on
 
 # mouse
-set-option -g mouse on
-set-option -g mouse-utf8 on
+set -g mouse on
+set -g mouse-utf8 on
 
 # https://github.com/edkolev/dots/blob/master/tmux.conf
 # Updates for tmux 1.9's current pane splitting paths.
@@ -112,17 +117,20 @@ if-shell "#{$TMUX_VERSION_MAJOR} -gt 1 -o \( #{$TMUX_VERSION_MAJOR} -eq 1 -a #{$
 if-shell "#{$TMUX_VERSION_MAJOR} -gt 1 -o \( #{$TMUX_VERSION_MAJOR} -eq 1 -a #{$TMUX_VERSION_MINOR} -ge 8 \)" 'unbind v; bind v split-window -h -c "#{pane_current_path}"'
 if-shell "#{$TMUX_VERSION_MAJOR} -gt 1 -o \( #{$TMUX_VERSION_MAJOR} -eq 1 -a #{$TMUX_VERSION_MINOR} -ge 8 \)" 'unbind %; bind % split-window -h -c "#{pane_current_path}"'
 
+# ctrl+c to send to clipboard
+bind C-c run "tmux save-buffer - | xsel -b -i"
+# ctrl+v to paste from clipboard
+bind C-v run "tmux set-buffer \"$(xsel -b -o)\"; tmux paste-buffer"
+
 # List of plugins
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
-set -g @plugin 'tmux-plugins/tmux-yank'
+set -g @plugin 'tmux-plugins/tmux-yank' # Yanking
+set -g @plugin 'nhdaly/tmux-scroll-copy-mode' # Sane scrolling.
 
-# Other examples:
-# set -g @plugin 'github_username/plugin_name'
-# set -g @plugin 'git@github.com/user/plugin'
-# set -g @plugin 'git@bitbucket.com/user/plugin'
+set -g @shell_mode 'vi'  # tmux-yank option.
+set -g @yank_selection 'clipboard' # tmux-yank option.
+set -g @yank_selection_mouse 'clipboard' # tmux-yank option.
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '$HOME/.tmux/plugins/tpm/tpm'
-
-set -g history-limit 4096

@@ -1,4 +1,2 @@
---c++-kinds=+p
---fields=+iaS
 --extra=+q
---languages=c++
+--languages=C++,Java,Python,CMake
