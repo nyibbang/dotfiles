@@ -52,4 +52,4 @@
 [rerere]
     enabled = true
 [checkout]
-	defaultRemote = origin
+    defaultRemote = origin
