@@ -53,3 +53,5 @@
     enabled = true
 [checkout]
     defaultRemote = origin
+[rebase]
+    autoSquash = true

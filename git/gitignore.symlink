@@ -5,6 +5,5 @@ tags
 *.pyc
 .color_coded
 compile_commands.json
-*.patch
 .lvimrc
 .vscode
