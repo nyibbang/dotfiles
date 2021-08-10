@@ -5,14 +5,14 @@
     protocol = https
 [core]
     excludesfile = ~/.gitignore
-    editor = vim
+    editor = nvim
     pager = less -FRSX
 [color]
     diff = auto
     status = auto
     branch = auto
     ui = true
-    editor = vim
+    editor = nvim
 [alias]
     br = branch
     ci = commit
@@ -36,7 +36,7 @@
     rebcont = rebase --continue
     rebabrt = rebase --abort
 [merge]
-    tool = vimdiff
+    tool = nvim -d
 [mergetool]
     keepBackup = false
 [difftool]
@@ -55,3 +55,5 @@
     defaultRemote = origin
 [rebase]
     autoSquash = true
+[pull]
+	rebase = false

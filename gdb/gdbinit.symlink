@@ -2,6 +2,11 @@ set auto-load safe-path /
 set print pretty
 set history save
 set history filename ~/.gdb_history
+set multiple-symbols ask
+
+skip -rfu ^std::forward
+skip -rfu ^std::move
+skip -rfu ^cq::mv
 
 python
 import subprocess
