@@ -101,3 +101,13 @@ zstyle ':completion:*' matcher-list '' \
     'r:[[:ascii:]]||[[:ascii:]]=** r:|=* m:{a-z\-}={A-Z\_}'
 
 setopt extended_glob
+
+PATH="/home/vincent.palancher/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/vincent.palancher/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/vincent.palancher/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/vincent.palancher/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/vincent.palancher/perl5"; export PERL_MM_OPT;
+if [ -e /home/vincent.palancher/.nix-profile/etc/profile.d/nix.sh ]; then . /home/vincent.palancher/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+# added by travis gem
+[ ! -s /home/vincent.palancher/.travis/travis.sh ] || source /home/vincent.palancher/.travis/travis.sh
