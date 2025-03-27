@@ -6,7 +6,6 @@ return {
       "nvim-lua/plenary.nvim",
       "antoinemadec/FixCursorHold.nvim",
       "nvim-treesitter/nvim-treesitter",
-      "rouge8/neotest-rust",
       "alfaix/neotest-gtest",
     },
     keys = {
@@ -66,9 +65,7 @@ return {
     opts = function()
       return {
         adapters = {
-          require("neotest-rust")({
-            args = { "--no-capture" },
-          }),
+          require('rustaceanvim.neotest'),
           require("neotest-gtest").setup({}),
         },
       }

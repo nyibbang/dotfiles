@@ -11,6 +11,20 @@ return {
         desc = "Debug: Continue",
       },
       {
+        "<S-F8>",
+        function()
+          require("dap").restart()
+        end,
+        desc = "Debug: Restart",
+      },
+      {
+        "<F9>",
+        function()
+          require("dap").terminate()
+        end,
+        desc = "Debug: Terminate",
+      },
+      {
         "<F10>",
         function()
           require("dap").step_over()
@@ -25,7 +39,7 @@ return {
         desc = "Debug: Step Into",
       },
       {
-        "<F12>",
+        "<S-F11>",
         function()
           require("dap").step_out()
         end,
@@ -70,6 +84,7 @@ return {
         function()
           require("dapui").eval()
         end,
+        mode = { "n", "v" },
         desc = "Debug: Evaluate expression under cursor or highlighted",
       },
     },
