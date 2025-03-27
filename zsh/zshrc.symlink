@@ -4,6 +4,9 @@ export ZSH=$HOME/.zsh/oh-my-zsh
 # shortcut to this dotfiles path is $DOTFILES
 export DOTFILES=$HOME/.dotfiles
 
+# Add directory to completions
+fpath=($HOME/.zsh/completions $fpath)
+
 # all of our zsh files
 typeset -U config_files
 config_files_raw=$(find $DOTFILES -type f -name "*.zsh" ! -path "*oh-my-zsh*")
@@ -54,7 +57,7 @@ ZSH_THEME="nebirhos"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git tmux)
+plugins=(git tmux docker rust)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -102,12 +105,10 @@ zstyle ':completion:*' matcher-list '' \
 
 setopt extended_glob
 
-PATH="/home/vincent.palancher/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/home/vincent.palancher/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/home/vincent.palancher/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/home/vincent.palancher/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/vincent.palancher/perl5"; export PERL_MM_OPT;
-if [ -e /home/vincent.palancher/.nix-profile/etc/profile.d/nix.sh ]; then . /home/vincent.palancher/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+PATH="$HOME/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="$HOME/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="$HOME/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"$HOME/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
 
-# added by travis gem
-[ ! -s /home/vincent.palancher/.travis/travis.sh ] || source /home/vincent.palancher/.travis/travis.sh
+if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

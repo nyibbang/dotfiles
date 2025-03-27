@@ -23,8 +23,8 @@
     fix = commit --amend
     amend = commit --amend
     glog = log --oneline --graph --decorate
-    glogd = log --oneline --graph --decorate --date-order
-    gloga = log --oneline --graph --decorate --all
+    glogd = glog --date-order
+    gloga = glog --all
     glogref = log --graph --pretty=format:'%Cred%h%Creset %C(green)%d %Creset' --abbrev-commit
     staged = diff --cached
     st = status
@@ -35,10 +35,15 @@
     serve = daemon --verbose --export-all --base-path=.git --reuseaddr --strict-paths .git/
     rebcont = rebase --continue
     rebabrt = rebase --abort
+[diff]
+    colorMoved = default
 [merge]
-    tool = nvim -d
+    tool = nvimdiff
+    conflictstyle = diff3
 [mergetool]
     keepBackup = false
+[mergetool "nvimdiff"]
+    cmd = nvim -d $LOCAL $MERGED $REMOTE
 [difftool]
     prompt = false
 [help]
@@ -56,4 +61,4 @@
 [rebase]
     autoSquash = true
 [pull]
-	rebase = false
+    rebase = false
