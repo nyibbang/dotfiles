@@ -8,45 +8,8 @@ return {
       "j-hui/fidget.nvim",
     },
     init = function()
-      vim.api.nvim_create_autocmd("LspAttach", {
-        group = vim.api.nvim_create_augroup("user_lsp_attach", { clear = true }),
-        callback = function(event)
-          local opts = { buffer = event.buf }
-          vim.keymap.set("n", "gd", function()
-            vim.lsp.buf.definition()
-          end, vim.tbl_extend("force", opts, { desc = "LSP: Jump to definition" }))
-          vim.keymap.set("n", "K", function()
-            vim.lsp.buf.hover()
-          end, vim.tbl_extend(
-            "force",
-            opts,
-            { desc = "LSP: Help for symbol under cursor" }
-          ))
-          vim.keymap.set("n", "<leader>vws", function()
-            vim.lsp.buf.workspace_symbol()
-          end, vim.tbl_extend("force", opts, { desc = "LSP: Search workspace symbols" }))
-          vim.keymap.set("n", "<leader>vd", function()
-            vim.diagnostic.open_float()
-          end, vim.tbl_extend("force", opts, { desc = "LSP: Open diagnostic" }))
-          vim.keymap.set("n", "[d", function()
-            vim.diagnostic.goto_next()
-          end, vim.tbl_extend("force", opts, { desc = "LSP: Next diagnostic" }))
-          vim.keymap.set("n", "]d", function()
-            vim.diagnostic.goto_prev()
-          end, vim.tbl_extend("force", opts, { desc = "LSP: Previous diagnostic" }))
-          vim.keymap.set("n", "<leader>vca", function()
-            vim.lsp.buf.code_action()
-          end, vim.tbl_extend("force", opts, { desc = "LSP: Code action" }))
-          vim.keymap.set("n", "<leader>vrr", function()
-            vim.lsp.buf.references()
-          end, vim.tbl_extend("force", opts, { desc = "LSP: Find references" }))
-          vim.keymap.set("n", "<leader>vrn", function()
-            vim.lsp.buf.rename()
-          end, vim.tbl_extend("force", opts, { desc = "LSP: Rename symbol" }))
-          vim.keymap.set("i", "<C-h>", function()
-            vim.lsp.buf.signature_help()
-          end, vim.tbl_extend("force", opts, { desc = "LSP: Signature help" }))
-        end,
+      vim.lsp.config("*", {
+          capabilities = require('cmp_nvim_lsp').default_capabilities(),
       })
     end,
   },
@@ -56,29 +19,12 @@ return {
   },
   {
     "williamboman/mason-lspconfig.nvim",
+    config = true,
     dependencies = {
       "williamboman/mason.nvim",
+      "neovim/nvim-lspconfig",
       "hrsh7th/cmp-nvim-lsp",
     },
-    opts = function()
-      local capabilities = vim.tbl_deep_extend(
-        "force",
-        {},
-        vim.lsp.protocol.make_client_capabilities(),
-        require("cmp_nvim_lsp").default_capabilities()
-      )
-
-      local lspconfig = require("lspconfig")
-      return {
-        handlers = {
-          function(server_name) -- default handler (optional)
-            lspconfig[server_name].setup({
-              capabilities = capabilities,
-            })
-          end,
-        },
-      }
-    end,
   },
   {
     "hrsh7th/nvim-cmp",
@@ -87,8 +33,6 @@ return {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-cmdline",
-      "L3MON4D3/LuaSnip", -- snippets
-      "saadparwaiz1/cmp_luasnip",
     },
     opts = function()
       local cmp = require("cmp")
@@ -96,18 +40,21 @@ return {
       return {
         snippet = {
           expand = function(args)
-            require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
+            vim.snippet.expand(args.body)
           end,
         },
         mapping = cmp.mapping.preset.insert({
           ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
           ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
+          ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+          ['<C-f>'] = cmp.mapping.scroll_docs(4),
+          ['<C-e>'] = cmp.mapping.abort(),
           ["<C-y>"] = cmp.mapping.confirm({ select = true }),
+          ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
           ["<C-Space>"] = cmp.mapping.complete(),
         }),
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
-          { name = "luasnip" },
         }, {
           { name = "buffer" },
         }),
@@ -138,6 +85,7 @@ return {
         lua = { "stylua" },
         python = { "isort", "black" },
         rust = { "rustfmt", lsp_format = "fallback" },
+        markdown = { "markdownlint" }
       },
     },
   },
