@@ -1,5 +1,5 @@
 local bufnr = vim.api.nvim_get_current_buf()
-vim.keymap.set("n", "<leader>vca", function()
+vim.keymap.set("n", "<leader>ca", function()
   vim.cmd.RustLsp("codeAction") -- supports rust-analyzer's grouping
 end, { desc = "Rust: Code action", silent = true, buffer = bufnr })
 vim.keymap.set(
