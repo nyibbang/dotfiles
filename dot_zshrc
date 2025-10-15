@@ -54,7 +54,7 @@ plugins=(
   virtualenv
 )
 
-source ~/.oh-my-zsh.sh
+source ~/.oh-my-zsh/oh-my-zsh.sh
 
 if [[ -n $DISPLAY && $TERM == "xterm" ]]; then
     export TERM=xterm-256color
