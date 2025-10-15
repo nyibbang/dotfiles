@@ -1,6 +1,6 @@
-# Local/private config goes in the include
-[include]
-    path = ~/.gitconfig.local
+[user]
+    name = {{ .git_name | quote }}
+    email = {{ .git_email | quote }}
 [hub]
     protocol = https
 [core]

@@ -1,38 +1,22 @@
-# Path to your oh-my-zsh configuration.
-export ZSH=$HOME/.zsh/oh-my-zsh
-
-# shortcut to this dotfiles path is $DOTFILES
-export DOTFILES=$HOME/.dotfiles
-
-# Add directory to completions
-fpath=($HOME/.zsh/completions $fpath)
-
-# all of our zsh files
-typeset -U config_files
-config_files_raw=$(find $DOTFILES -type f -name "*.zsh" ! -path "*oh-my-zsh*")
-config_files=(${(@f)${config_files_raw}})
-
-# load the path files
-for file in ${(M)config_files:#*/path.zsh}
-do
-  source $file
-done
-
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="nebirhos"
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+# Aliases
+alias ls="ls -F -h --color"
+alias l="ls -lAh -h --color"
+alias ll="ls -l -h --color"
+alias la='ls -A -h --color'
+alias p='cd ..'
+alias cat='bat'
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 
 # Uncomment this to disable bi-weekly auto-update checks
-# DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="true"
 
 # Uncomment to change how often before auto-updates occur? (in days)
 # export UPDATE_ZSH_DAYS=13
@@ -57,9 +41,20 @@ ZSH_THEME="nebirhos"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git tmux docker rust)
+plugins=(
+  aliases
+  archlinux
+  colored-man-pages
+  command-not-found
+  docker
+  git
+  rust
+  tmux
+  ubuntu
+  virtualenv
+)
 
-source $ZSH/oh-my-zsh.sh
+source ~/.oh-my-zsh.sh
 
 if [[ -n $DISPLAY && $TERM == "xterm" ]]; then
     export TERM=xterm-256color
@@ -70,20 +65,6 @@ if [[ -a ~/.localrc ]]
 then
   source ~/.localrc
 fi
-
-# load everything but the path and completion files
-for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}
-do
-  source $file
-done
-
-# load every completion after autocomplete loads
-for file in ${(M)config_files:#*/completion.zsh}
-do
-  source $file
-done
-
-unset config_files
 
 # Better history
 # Credits to https://coderwall.com/p/jpj_6q/zsh-better-history-searching-with-arrow-keys
@@ -105,10 +86,8 @@ zstyle ':completion:*' matcher-list '' \
 
 setopt extended_glob
 
-PATH="$HOME/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="$HOME/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="$HOME/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"$HOME/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
-
-if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+# Environment variables
+export EDITOR='nvim'
+export BAT="Monokai Extended"
+export RUSTDOCFLAGS="--default-theme=ayu"
+export PATH="/usr/local/bin:/usr/local/sbin:$HOME/.local/bin:$PATH"
