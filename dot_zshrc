@@ -91,3 +91,7 @@ export EDITOR='nvim'
 export BAT="Monokai Extended"
 export RUSTDOCFLAGS="--default-theme=ayu"
 export PATH="/usr/local/bin:/usr/local/sbin:$HOME/.local/bin:$PATH"
+
+if (env | grep -Fq 'CONTAINER_ID'); then
+  export RPS1="%{$terminfo[bold]$fg[blue]%} ${CONTAINER_ID}%{$reset_color%}"
+fi
