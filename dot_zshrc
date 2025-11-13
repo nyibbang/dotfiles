@@ -11,6 +11,7 @@ alias ll="ls -l -h --color"
 alias la='ls -A -h --color'
 alias p='cd ..'
 alias cat='bat'
+alias fd='fdfind'
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
